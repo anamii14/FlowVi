@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart IV Drip Monitoring</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <h1>SMART IV DRIP MONITORING</h1>
+        <p class="subtitle">Real-Time IV Fluid & Flow Monitoring System</p>
+
+        <!-- Main Information Cards -->
+         <div class="cards">
+
+            <div class="card">
+                <h2>IV Fluid Level</h2>
+                <p id="ivLevel">-- mL</p>
+
+                <div class="fluid-container">
+                    <div id="fluidBar" class="fluid-bar"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Flow Rate</h2>
+                <p id="flowRate">-- mL/min</p>
+            </div>
+
+            <div class="card">
+                <h2>Current Status</h2>
+                <p id="status">--</p>
+
+                <div id="statusIndicator" class="status-indicator normal">
+                    ● Waiting for ESP32
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Flow Trend</h2>
+                <p id="flowTrend">--</p>
+            </div>
+
+            <div class="card">
+                <h2>Predicted Remaining Time</h2>
+                <p id="remainingTime">-- min</p>
+            </div>
+
+        </div>
+
+
+        <!-- Recent Alerts -->
+
+<div class="alerts">
+
+    <h2>Recent Alerts</h2>
+
+    <div id="alertList">
+
+        <div class="alert normal-alert">
+            <span>✓</span>
+            <div>
+                <strong>System Started</strong>
+                <p>Monitoring system initialized</p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Fluid Level Monitoring Graph -->
+
+<div class="graph-section">
+
+    <h2>IV Fluid Level Monitoring</h2>
+
+    <div class="graph-container">
+        <canvas id="fluidChart"></canvas>
+    </div>
+
+</div>
+
+        <!-- ESP32 Connection -->
+        <div class="connection">
+            <p id="connectionStatus">
+                ESP32 Status: <strong>● Connecting...</strong>
+            </p>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
