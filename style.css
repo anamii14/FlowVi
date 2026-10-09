@@ -198,3 +198,7 @@ button:hover {
 .disconnected strong {
     color: red;
 }
+
+/* Optical IR Sensor Status */
+.sensor-clear { color: green !important; font-size: 22px !important; }
+.sensor-broken { color: red !important; font-size: 22px !important; }

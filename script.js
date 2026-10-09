@@ -195,6 +195,12 @@ function updateDashboard(data) {
     const flowRate = Number(data.flowRate);
     const flowTrend = Number(data.flowTrend);
     const remainingTime = Number(data.remainingTime);
+
+    // Optical IR drop-sensor data from ESP32
+    const dropCount = Number(data.dropCount);
+    const dropRateDpm = Number(data.dropRateDpm);
+    const irBeamBroken = Boolean(data.irBeamBroken);
+
     const status = data.status;
 
 
@@ -216,6 +222,35 @@ function updateDashboard(data) {
         flowTrend.toFixed(3);
 
 
+    // Optical drop count
+
+    document.getElementById("dropCount").innerText =
+        Number.isFinite(dropCount) ? Math.round(dropCount) : "--";
+
+
+    // Optical drop rate
+
+    document.getElementById("dropRate").innerText =
+        Number.isFinite(dropRateDpm)
+            ? dropRateDpm.toFixed(1) + " drops/min"
+            : "-- drops/min";
+
+
+    // IR beam state
+
+    const irIndicator = document.getElementById("irSensorStatus");
+
+    if (irIndicator) {
+        if (irBeamBroken) {
+            irIndicator.innerText = "● Beam Broken";
+            irIndicator.className = "sensor-broken";
+        } else {
+            irIndicator.innerText = "● Beam Clear";
+            irIndicator.className = "sensor-clear";
+        }
+    }
+
+
     // Remaining time
 
     document.getElementById("remainingTime").innerText =
@@ -230,7 +265,7 @@ function updateDashboard(data) {
     // Fluid level bar
 
     let percentage = (ivLevel / BAG_CAPACITY) * 100;
-    
+
     percentage = Math.max(0, Math.min(100, percentage));
 
     document.getElementById("fluidBar").style.width =
